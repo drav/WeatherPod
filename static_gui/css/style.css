@@ -42,3 +42,12 @@ header h1 {
   font-size: 3.5em;
   font-weight: 100;
 }
+
+.graphs {
+	width: 100%;
+}
+
+.graphs section {
+	width: 33%;
+	display: inline-block;
+}

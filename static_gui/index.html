@@ -6,10 +6,34 @@
     <meta charset="utf-8">
 
     <!-- CSS stylesheets -->
-
     <link rel="stylesheet" href="css/style.css">
+
+    <!-- JavaScript stuff -->
+	<!-- <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script> -->
+    <script src="js/smoothie.js"></script>
+	<script>
+		// Random graph data
+		
+		var random = new TimeSeries();
+		setInterval(function() {
+			random.append(new Date().getTime(), Math.random() * 10000);
+		}, 500);
+		
+		var createTimeline = function() {
+			var chart = new SmoothieChart();
+			chart.addTimeSeries(random, { strokeStyle: 'rgba(255, 255, 255, 0,8)', fillStyle: 'rgba(255, 255, 255, 0.2)', lineWidth: 2});
+			chart.streamTo(document.getElementById("temp_graph"), 500);
+		};
+		
+		// jQuery graphs responsiveness
+		
+		/* $(window).on('resize', function() {
+			var win = $(this);
+			$('.graph').width(win.width() / 3 - 2);
+		}); */
+	</script>
   </head>
-  <body>
+  <body onload="createTimeline()">
     <header>
       <img src="img/weatherpod_logo.png" />
       <h1>WeatherPod</h1>
@@ -34,7 +58,7 @@
     </section>
     <section class="graphs">
       <section class="temp_graph">
-        <!-- To fill in -->
+        <canvas id="temp_graph graph" height="100px"></canvas>
       </section>
       <section class="humidity_graph">
         <!-- To fill in -->
