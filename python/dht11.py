@@ -85,6 +85,6 @@ def getTemperatureHumidity(pin, value):
 
         else if value == 1:
             return humidity
-        
+
     else:
     	print("ERR_CRC")
