@@ -83,7 +83,7 @@ def getTemperatureHumidity(pin, value):
     	if value == 0:
             return temperature
 
-        else if value == 1:
+        elif value == 1:
             return humidity
 
     else:
