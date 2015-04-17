@@ -21,7 +21,6 @@ except:
     print("Usage: " + sys.argv[0] + " [DHT11 Pin] [BMP180 Pin]")
     sys.exit(0)
 
-
 while True:
     temperature = getTemperatureHumidity(dht11Pin, "temp")
     humidity = getTemperatureHumidity(dht11Pin, "hum")

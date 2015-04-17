@@ -7,6 +7,7 @@ def getTemperatureHumidity(pin, value):
 
     if (not pin) or (not value) or (type(pin) != "int") or (type(value) != "str"):
         print("Usage: getTemperatureHumidity([pin], [\"temp\"|\"hum\"])")
+        return
 
     data = []
 
