@@ -22,8 +22,8 @@ except:
     sys.exit(0)
 
 while True:
-    temperature = getTemperatureHumidity(dht11Pin, "temp")
-    humidity = getTemperatureHumidity(dht11Pin, "hum")
+    temperature = dht11.getTemperatureHumidity(dht11Pin, "temp")
+    humidity = dht11.getTemperatureHumidity(dht11Pin, "hum")
     # pressure = getPressure(pin)
 
     print("Temperature: " + temperature + "°C")
