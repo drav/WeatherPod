@@ -40,7 +40,6 @@ def sendData():
         alti = random.randint(100, 300)
 
     else:
-        print(args.dht11Pin)
         temp = int(dht11.getData(int(args.dht11Pin))[temp])
         hum = int(dht11.getData(int(args.dht11Pin))[hum])
         # pres = int(bpm180.getData()[pres])
