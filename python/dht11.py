@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import RPi.GPIO as GPIO
+import time
 
 def bin2dec(string_num):
     return str(int(string_num, 2))
