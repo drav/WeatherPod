@@ -1,5 +1,7 @@
 #!/usr/bin/python
 
+import RPi.GPIO as GPIO
+
 def bin2dec(string_num):
     return str(int(string_num, 2))
 
