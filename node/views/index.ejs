@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>WeatherPod - Dashboard</title>
+    <meta charset="utf-8">
+
+    <!-- CSS stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- JavaScript stuff -->
+    <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="socket.io/socket.io.js"></script>
+
+  	<script>
+      // Socket.io initialization
+
+      var socket = io();
+
+  		// Random graph data
+
+      $(document).ready(function() {
+        socket.on('weather-data', function(data) {
+
+          $('.temp h1 span').html(data.temp);
+          $('.humidity h1 span').html(data.hum);
+          $('.pressure h1 span').html(data.pres);
+          $('.altitude h1 span').html(data.alti);
+        });
+      });
+
+  		// jQuery graphs responsiveness
+
+  		/* $(window).on('resize', function() {
+  			var win = $(this);
+  			$('.graph').width(win.width() / 3 - 2);
+  		}); */
+  	</script>
+  </head>
+  <body>
+    <header>
+      <img src="img/weatherpod_logo.png" />
+      <h1>WeatherPod</h1>
+    </header>
+    <section class="data">
+      <section class="temp">
+        <h1><span>Na/N</span>°C</h1>
+        <h4>Temperature</h4>
+      </section>
+      <section class="humidity">
+        <h1><span>Na/N</span>%</h1>
+        <h4>Humidity</h4>
+      </section>
+      <section class="pressure">
+        <h1><span>Na/N</span>Hpa</h1>
+        <h4>Pressure</h4>
+      </section>
+      <section class="altitude">
+        <h1><span>Na/N</span>m</h1>
+        <h4>Altitude</h4>
+      </section>
+    </section>
+    <section class="graphs">
+      <section class="temp-graph">
+
+      </section>
+      <section class="humidity-graph">
+        <!-- To fill in -->
+      </section>
+      <section class="pressure-graph">
+        <!-- To fill in -->
+      </section>
+    </section>
+  </body>
+</html>

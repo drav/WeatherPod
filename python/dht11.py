@@ -3,11 +3,10 @@
 def bin2dec(string_num):
     return str(int(string_num, 2))
 
-def getTemperatureHumidity(pin, value):
+def getData(pin):
 
-    if (not pin) or (not value) or (type(pin) != "int") or (type(value) != "str"):
-        print("Usage: getTemperatureHumidity([pin], [\"temp\"|\"hum\"])")
-        return
+    if (not pin) or (type(pin) != "int"):
+        raise ValueError("Bad argument. Usage: getTemperatureHumidity([pin], [\"temp\"|\"hum\"])")
 
     data = []
 
@@ -86,11 +85,7 @@ def getTemperatureHumidity(pin, value):
     temperature = bin2dec(temperatureBit)
 
     if int(humidity) + int(temperature) - int(bin2dec(crc)) == 0:
-        if value == "temp":
-            return(temperature)
-
-        elif value == "hum":
-            return(humidity)
+        return "{ 'temp': " + int(temperature) + ", 'hum': " + int(humidity) + " }"
 
     else:
     	print("ERR_CRC")

@@ -1,0 +1,11 @@
+{
+  "name": "WeatherPod-Server",
+  "version": "0.1.0",
+  "description": "Webapp that receives data from a WeatherPod module and displays them live to the user",
+  "author": "Loan Laux <contact@loanlaux.fr>",
+  "dependencies": {
+    "ejs": "^2.3.1",
+    "express": "^4.12.3",
+    "socket.io": "^1.3.5"
+  }
+}
