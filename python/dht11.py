@@ -5,8 +5,8 @@ def bin2dec(string_num):
 
 def getData(pin):
 
-    if (not pin) or (type(pin) != "int"):
-        raise ValueError("Bad argument. Usage: getTemperatureHumidity([pin], [\"temp\"|\"hum\"])")
+    # if (not pin) or (type(pin) != "int"):
+    #    raise ValueError("Bad argument. Usage: getData(<pin>)")
 
     data = []
 
