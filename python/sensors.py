@@ -6,11 +6,6 @@ import argparse
 import requests
 import threading
 
-# Import custom sensors libraries
-
-import dht11
-# import bmp180
-
 # Pins arguments
 
 parser = argparse.ArgumentParser()
@@ -27,6 +22,8 @@ if args.random:
 
 else:
     import RPi.GPIO as GPIO
+    import dht11
+    # import bmp180
 
 def sendData():
     threading.Timer(1.0, sendData).start()

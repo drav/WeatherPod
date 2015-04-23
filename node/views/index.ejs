@@ -11,6 +11,8 @@
     <!-- JavaScript stuff -->
     <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
     <script src="socket.io/socket.io.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
 
   	<script>
       // Socket.io initialization
@@ -27,14 +29,227 @@
           $('.pressure h1 span').html(data.pres);
           $('.altitude h1 span').html(data.alti);
         });
+
+        Highcharts.setOptions({
+            global: {
+                useUTC: false
+            }
+        });
+
+        $('.temp-graph').highcharts({
+            chart: {
+                type: 'spline',
+                animation: Highcharts.svg, // don't animate in old IE
+                marginRight: 10,
+                events: {
+                    load: function() {
+                            var series = this.series[0];
+
+                            console.log(this.series);
+
+                            socket.on('weather-data', function(data) {
+                              var x = (new Date()).getTime(), // current time
+                                  y = parseInt(data.temp, 10);
+
+                              console.log([x, y]);
+
+                              series.addPoint([x, y], true, true);
+                            });
+                          }
+                }
+            },
+            title: {
+                text: 'Temp'
+            },
+            xAxis: {
+                type: 'datetime',
+                tickPixelInterval: 150
+            },
+            yAxis: {
+                title: {
+                    text: 'Value'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                formatter: function () {
+                    return '<b>' + this.series.name + '</b><br/>' +
+                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
+                        Highcharts.numberFormat(this.y, 2);
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            exporting: {
+                enabled: false
+            },
+            series: [{
+                name: 'Temp',
+                data: (function () {
+                    // generate an array of random data
+                    var data = [],
+                        time = (new Date()).getTime(),
+                        i;
+
+                    for (i = -19; i <= 0; i += 1) {
+                        data.push({
+                            x: time + i * 1000,
+                            y: 0
+                        });
+                    }
+                    return data;
+                }())
+            }]
+        });
+
+        $('.humidity-graph').highcharts({
+            chart: {
+                type: 'spline',
+                animation: Highcharts.svg, // don't animate in old IE
+                marginRight: 10,
+                events: {
+                    load: function() {
+                            var series = this.series[0];
+
+                            console.log(this.series);
+
+                            socket.on('weather-data', function(data) {
+                              var x = (new Date()).getTime(), // current time
+                                  y = parseInt(data.hum, 10);
+
+                              console.log([x, y]);
+
+                              series.addPoint([x, y], true, true);
+                            });
+                          }
+                }
+            },
+            title: {
+                text: 'Humidity'
+            },
+            xAxis: {
+                type: 'datetime',
+                tickPixelInterval: 150
+            },
+            yAxis: {
+                title: {
+                    text: 'Value'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                formatter: function () {
+                    return '<b>' + this.series.name + '</b><br/>' +
+                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
+                        Highcharts.numberFormat(this.y, 2);
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            exporting: {
+                enabled: false
+            },
+            series: [{
+                name: 'Temp',
+                data: (function () {
+                    // generate an array of random data
+                    var data = [],
+                        time = (new Date()).getTime(),
+                        i;
+
+                    for (i = -19; i <= 0; i += 1) {
+                        data.push({
+                            x: time + i * 1000,
+                            y: 0
+                        });
+                    }
+
+                    return data;
+                }())
+            }]
+        });
+
+        $('.pressure-graph').highcharts({
+            chart: {
+                type: 'spline',
+                animation: Highcharts.svg, // don't animate in old IE
+                marginRight: 10,
+                events: {
+                    load: function() {
+                            var series = this.series[0];
+
+                            console.log(this.series);
+
+                            socket.on('weather-data', function(data) {
+                              var x = (new Date()).getTime(), // current time
+                                  y = parseInt(data.pres, 10);
+
+                              console.log([x, y]);
+
+                              series.addPoint([x, y], true, true);
+                            });
+                          }
+                }
+            },
+            title: {
+                text: 'Pressure'
+            },
+            xAxis: {
+                type: 'datetime',
+                tickPixelInterval: 150
+            },
+            yAxis: {
+                title: {
+                    text: 'Value'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            tooltip: {
+                formatter: function () {
+                    return '<b>' + this.series.name + '</b><br/>' +
+                        Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' +
+                        Highcharts.numberFormat(this.y, 2);
+                }
+            },
+            legend: {
+                enabled: false
+            },
+            exporting: {
+                enabled: false
+            },
+            series: [{
+                name: 'Temp',
+                data: (function () {
+                    // generate an array of random data
+                    var data = [],
+                        time = (new Date()).getTime(),
+                        i;
+
+                    for (i = -19; i <= 0; i += 1) {
+                        data.push({
+                            x: time + i * 1000,
+                            y: 0
+                        });
+                    }
+                    return data;
+                }())
+            }]
+        });
       });
-
-  		// jQuery graphs responsiveness
-
-  		/* $(window).on('resize', function() {
-  			var win = $(this);
-  			$('.graph').width(win.width() / 3 - 2);
-  		}); */
   	</script>
   </head>
   <body>
