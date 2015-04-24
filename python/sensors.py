@@ -9,8 +9,8 @@ import threading
 # Pins arguments
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-r", "--random", help = "Sends fake random data to the server. For testing purposes only.", action = "store_true")
-parser.add_argument("-v", "--verbose", help = "Increases command line verbosity.", action = "store_true")
+parser.add_argument("-r", "--random", help = "sends fake random data to the server for testing purposes", action = "store_true")
+parser.add_argument("-v", "--verbose", help = "increases command line verbosity", action = "store_true")
 parser.add_argument("dht11Pin", help = "DHT11 data pin number", type = int)
 parser.add_argument("serverURL", help = "WeatherPod server URL/IP", type = str)
 args = parser.parse_args()
@@ -45,8 +45,8 @@ def sendData():
     # Output data to the console if verbose mode enabled
 
     if args.verbose:
-        print("Temperature: " + str(temp) + "°C")
-        print("Humidity: " + str(hum) + "%")
+        print(u"Temperature: " + str(temp) + u"°C")
+        print(u"Humidity: " + str(hum) + u"%")
         # print("Pressure: " + str(pres) + "hPa")
         # print("Altitude: " + str(alti) + "m")
 
