@@ -1,4 +1,7 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
+# coding: utf-8
+
+""" An open-source connected sensors board for weather balloons. Uses Python, Node.JS, a Raspberry Pi and a little bit of solder. """
 
 # Import libraries
 
@@ -6,7 +9,15 @@ import argparse
 import requests
 import threading
 
-# Pins arguments
+__author__ = "Loan Laux"
+__copyright__ = "Copyright 2015"
+__credits__ = ["Julie Dubois", "Daniel Sanchez-Palma", "Rafael Magisson", "Bruno Masi"]
+__license__ = "MIT"
+__maintainer__ = "Loan Laux"
+__email__ = "contact@loanlaux.fr"
+__status__ = "Development"
+
+# Arguments parsing
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-r", "--random", help = "sends fake random data to the server for testing purposes", action = "store_true")
@@ -26,6 +37,8 @@ else:
     # import bmp180
 
 def sendData():
+    """ Sends data to server using an HTTP GET request every second. """
+    
     threading.Timer(1.0, sendData).start()
 
     if args.random:
