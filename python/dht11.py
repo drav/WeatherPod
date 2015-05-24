@@ -42,7 +42,7 @@ def getData(pin):
     		bit_count = 0
 
             print(data[count])
-
+            
     		while data[count] == 0:
     			tmp = 1
     			count = count + 1
