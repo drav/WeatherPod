@@ -25,6 +25,7 @@ def getData(pin):
 
     for i in range(0, 500):
         data.append(GPIO.input(pin))
+        print(data)
 
     bit_count = 0
     tmp = 0
