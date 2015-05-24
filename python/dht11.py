@@ -40,8 +40,6 @@ def getData(pin):
 
     	for i in range(0, 32):
     		bit_count = 0
-
-            print(data[count])
             
     		while data[count] == 0:
     			tmp = 1
