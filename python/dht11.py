@@ -40,7 +40,7 @@ def getData(pin):
 
     	for i in range(0, 32):
     		bit_count = 0
-            
+
     		while data[count] == 0:
     			tmp = 1
     			count = count + 1
@@ -88,7 +88,7 @@ def getData(pin):
     temperature = bin2dec(temperatureBit)
 
     if int(humidity) + int(temperature) - int(bin2dec(crc)) == 0:
-        return "{ 'temp': " + int(temperature) + ", 'hum': " + int(humidity) + " }"
+        return "{ 'temp': " + str(temperature) + ", 'hum': " + str(humidity) + " }"
 
     else:
     	print("ERR_CRC")
