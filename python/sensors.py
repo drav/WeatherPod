@@ -26,7 +26,7 @@ parser.add_argument("dht11Pin", help = "DHT11 data pin number", type = int)
 parser.add_argument("serverURL", help = "WeatherPod server URL/IP", type = str)
 args = parser.parse_args()
 
-# Import random if random mode is enable, GPIO library if not
+# Import random if random mode is enable, GPIO and sensors modules if not
 
 if args.random:
     import random
@@ -62,8 +62,8 @@ def sendData():
     if args.verbose:
         print(u"Temperature: " + str(temp) + u"°C")
         print(u"Humidity: " + str(hum) + u"%")
-        print("Pressure: " + str(pres) + "hPa")
-        print("Altitude: " + str(alti) + "m")
+        print(u"Pressure: " + str(pres) + u"hPa")
+        print(u"Altitude: " + str(alti) + u"m")
 
     # Send data to the server using an HTTP GET request
 
