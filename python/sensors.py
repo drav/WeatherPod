@@ -41,6 +41,8 @@ else:
 def sendData():
     """ Sends data to server using an HTTP GET request every second. """
 
+    global bmp180
+
     threading.Timer(1.0, sendData).start()
 
     if args.random:
@@ -52,8 +54,15 @@ def sendData():
         alti = random.randint(100, 300)
 
     else:
-        temp = int(dht11.getData(int(args.dht11Pin))[temp])
-        hum = int(dht11.getData(int(args.dht11Pin))[hum])
+        # Acquire data from the sensors
+
+        try:
+            temp = int(dht11.getData(int(args.dht11Pin))[temp])
+            hum = int(dht11.getData(int(args.dht11Pin))[hum])
+
+        except:
+            temp, hum = None
+
         pres = int(bpm180.read_pressure())
         alti = int(bmp180.read_altitude())
 
