@@ -34,11 +34,13 @@ if args.random:
 else:
     import RPi.GPIO as GPIO
     import dht11
-    # import bmp180
+    import BMP085
+
+    bmp180 = BMP085.BMP085()
 
 def sendData():
     """ Sends data to server using an HTTP GET request every second. """
-    
+
     threading.Timer(1.0, sendData).start()
 
     if args.random:
@@ -52,16 +54,16 @@ def sendData():
     else:
         temp = int(dht11.getData(int(args.dht11Pin))[temp])
         hum = int(dht11.getData(int(args.dht11Pin))[hum])
-        # pres = int(bpm180.getData()[pres])
-        # alti = int(bmp180.getData()[alti])
+        pres = int(bpm180.read_pressure())
+        alti = int(bmp180.read_altitude())
 
     # Output data to the console if verbose mode enabled
 
     if args.verbose:
         print(u"Temperature: " + str(temp) + u"°C")
         print(u"Humidity: " + str(hum) + u"%")
-        # print("Pressure: " + str(pres) + "hPa")
-        # print("Altitude: " + str(alti) + "m")
+        print("Pressure: " + str(pres) + "hPa")
+        print("Altitude: " + str(alti) + "m")
 
     # Send data to the server using an HTTP GET request
 
