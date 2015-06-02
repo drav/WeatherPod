@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
+import argparse
 import Adafruit_BMP.BMP085 as BMP085
 
 # Arguments parsing
