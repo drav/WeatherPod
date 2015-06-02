@@ -35,6 +35,7 @@ else:
     import RPi.GPIO as GPIO
     import dht11
     import subprocess
+    import os
 
 def sendData():
     """ Sends data to server using an HTTP GET request every second. """
