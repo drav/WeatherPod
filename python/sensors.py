@@ -60,8 +60,8 @@ def sendData():
             temp = None
             hum = None
 
-        pres = int(subprocess.call(["sudo python bmp180.py", "-p"]))
-        alti = int(subprocess.call(["sudo python bmp180.py", "-a"]))
+        pres = int(subprocess.call(["sudo python " + os.path.dirname(os.path.realpath(__file__)) + "/bmp180.py", "-p"]))
+        alti = int(subprocess.call(["sudo python " + os.path.dirname(os.path.realpath(__file__)) + "/bmp180.py", "-a"]))
 
     # Output data to the console if verbose mode enabled
 
