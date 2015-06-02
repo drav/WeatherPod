@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # coding: utf-8
 
 """ An open-source connected sensors board for weather balloons. Uses Python, Node.JS, a Raspberry Pi and a little bit of solder. """
@@ -34,9 +34,9 @@ if args.random:
 else:
     import RPi.GPIO as GPIO
     import dht11
-    import subprocess
-    import os
-    import sys
+    import Adafruit_DHT.BMP085 as BMP085
+
+    BMP180 = BMP085.BMP085()
 
 def sendData():
     """ Sends data to server using an HTTP GET request every second. """
@@ -62,8 +62,8 @@ def sendData():
             temp = None
             hum = None
 
-        pres = int(subprocess.call(["sudo", "python", os.path.dirname(os.path.realpath(sys.argv[0])) + "/bmp180.py", "-p"]))
-        alti = int(subprocess.call(["sudo", "python", os.path.dirname(os.path.realpath(sys.argv[0])) + "/bmp180.py", "-a"]))
+        pres = BMP180.read_pressure()
+        alti = BMP180.read_altitude()
 
     # Output data to the console if verbose mode enabled
 
