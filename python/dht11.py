@@ -14,7 +14,6 @@ class RangeError(Exception):
 
 
 def getData(pin):
-
     # if (not pin) or (type(pin) != "int"):
     #    raise ValueError("Bad argument. Usage: getData(<pin>)")
 

@@ -34,6 +34,7 @@ if args.random:
 else:
     import RPi.GPIO as GPIO
     import dht11
+    global RangeError
     import Adafruit_BMP.BMP085 as BMP085
 
     BMP180 = BMP085.BMP085()
