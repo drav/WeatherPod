@@ -34,14 +34,10 @@ if args.random:
 else:
     import RPi.GPIO as GPIO
     import dht11
-    import Adafruit_BMP.BMP085 as BMP085
-
-    bmp180 = BMP085.BMP085()
+    import subprocess
 
 def sendData():
     """ Sends data to server using an HTTP GET request every second. """
-
-    global bmp180
 
     threading.Timer(1.0, sendData).start()
 
@@ -61,10 +57,11 @@ def sendData():
             hum = int(dht11.getData(int(args.dht11Pin))[hum])
 
         except:
-            temp, hum = None
+            temp = None
+            hum = None
 
-        pres = int(bpm180.read_pressure())
-        alti = int(bmp180.read_altitude())
+        pres = int(subprocess.call(["sudo python bmp180.py", "-p"]))
+        alti = int(subprocess.call(["sudo python bmp180.py", "-a"]))
 
     # Output data to the console if verbose mode enabled
 
