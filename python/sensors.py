@@ -58,7 +58,7 @@ def sendData():
             temp = int(dht11.getData(int(args.dht11Pin))[temp])
             hum = int(dht11.getData(int(args.dht11Pin))[hum])
 
-        except:
+        except RangeError:
             temp = None
             hum = None
 

@@ -6,6 +6,13 @@ import time
 def bin2dec(string_num):
     return str(int(string_num, 2))
 
+class RangeError(Exception):
+    def __init__(self, value):
+        self.parameter = value
+    def __str__(self):
+        return repr(self.parameter)
+
+
 def getData(pin):
 
     # if (not pin) or (type(pin) != "int"):
@@ -61,8 +68,7 @@ def getData(pin):
     				temperatureBit = temperatureBit + "0"
 
     except:
-    	print("ERR_RANGE")
-    	exit(0)
+    	raise RangeError("Range Error occured.")
 
     try:
     	for i in range(0, 8):
@@ -81,8 +87,7 @@ def getData(pin):
     		else:
     			crc = crc + "0"
     except:
-    	print("ERR_RANGE")
-    	exit(0)
+    	raise RangeError("Range Error occured.")
 
     humidity = bin2dec(humidityBit)
     temperature = bin2dec(temperatureBit)
