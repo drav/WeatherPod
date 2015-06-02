@@ -34,7 +34,6 @@ if args.random:
 else:
     import RPi.GPIO as GPIO
     import dht11
-    global RangeError
     import Adafruit_BMP.BMP085 as BMP085
 
     BMP180 = BMP085.BMP085()
@@ -59,7 +58,7 @@ def sendData():
             temp = int(dht11.getData(int(args.dht11Pin))[temp])
             hum = int(dht11.getData(int(args.dht11Pin))[hum])
 
-        except RangeError:
+        except:
             temp = None
             hum = None
 
