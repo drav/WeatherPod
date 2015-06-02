@@ -36,6 +36,7 @@ else:
     import dht11
     import subprocess
     import os
+    import sys
 
 def sendData():
     """ Sends data to server using an HTTP GET request every second. """
