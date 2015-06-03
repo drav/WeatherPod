@@ -3,6 +3,7 @@ var port = process.argv[2];
 var express = require('express');
 var app = express();
 var path = require('path');
+var lastHumidity;
 
 app.get('/newdata/:temperature/:humidity/:pressure/:altitude', function(req, res) {
 
@@ -11,12 +12,33 @@ app.get('/newdata/:temperature/:humidity/:pressure/:altitude', function(req, res
   var pressure = req.params.pressure;
   var altitude = req.params.altitude;
 
-  var weatherData = {
-    "temp": temperature,
-    "hum": humidity,
-    "pres": pressure,
-    "alti": altitude
-  };
+  if(humidity == "None") {
+    if(lastHumidity) {
+      humidity = lastHumidity;
+    }
+
+    else {
+      humidity = 0;
+    }
+
+    var weatherData = {
+      "temp": temperature,
+      "hum": humidity,
+      "pres": pressure,
+      "alti": altitude
+    };
+  }
+
+  else {
+    lastHumidity = humidity;
+
+    var weatherData = {
+      "temp": temperature,
+      "hum": humidity,
+      "pres": pressure,
+      "alti": altitude
+    };
+  }
 
   console.log(weatherData);
 
