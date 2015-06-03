@@ -70,7 +70,7 @@ def sendData():
     	if hum:
             	print(u"Humidity: " + str(hum) + u"%")
 
-        print(u"Temperature: " + str(temp) + u"°C")
+        print(u"Temperature: " + str(temp) + u"C")
     	print(u"Pressure: " + str(pres) + u"hPa")
         print(u"Altitude: " + str(alti) + u"m")
 
