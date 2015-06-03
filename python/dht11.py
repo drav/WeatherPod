@@ -7,11 +7,12 @@ def bin2dec(string_num):
     return str(int(string_num, 2))
 
 class RangeError(Exception):
-    def __init__(self, value):
-        self.parameter = value
-    def __str__(self):
-        return repr(self.parameter)
+    def __init__(self, mismatch):
+        Exception.__init__(self, mismatch)
 
+class CRCError(Exception):
+    def __init__(self, mismatch):
+        Exception.__init__(self, mismatch)
 
 def getData(pin):
     # if (not pin) or (type(pin) != "int"):
@@ -67,7 +68,7 @@ def getData(pin):
     				temperatureBit = temperatureBit + "0"
 
     except:
-    	raise RangeError("Range Error occured.")
+    	raise RangeError()
         exit(0)
 
     try:
@@ -87,7 +88,7 @@ def getData(pin):
     		else:
     			crc = crc + "0"
     except:
-    	raise RangeError("Range Error occured.")
+    	raise RangeError()
         exit(0)
 
     humidity = bin2dec(humidityBit)
@@ -97,4 +98,4 @@ def getData(pin):
         return "{ 'temp': " + str(temperature) + ", 'hum': " + str(humidity) + " }"
 
     else:
-    	print("ERR_CRC")
+    	raise CRCError()

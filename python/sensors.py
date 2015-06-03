@@ -68,11 +68,11 @@ def sendData():
     # Output data to the console if verbose mode enabled
 
     if args.verbose:
-	if temp:
-        	print(u"Temperature: " + str(temp) + u"°C")
-        	print(u"Humidity: " + str(hum) + u"%")
-        
-	print(u"Pressure: " + str(pres) + u"hPa")
+    	if temp:
+            	print(u"Temperature: " + str(temp) + u"°C")
+            	print(u"Humidity: " + str(hum) + u"%")
+
+    	print(u"Pressure: " + str(pres) + u"hPa")
         print(u"Altitude: " + str(alti) + u"m")
 
     # Send data to the server using an HTTP GET request
