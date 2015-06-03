@@ -39,7 +39,7 @@ def getData(pin):
     temperatureBit = ""
     crc = ""
 
-
+    try:
     	while data[count] == 1:
     		tmp = 1
     		count = count + 1
