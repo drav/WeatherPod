@@ -55,23 +55,22 @@ def sendData():
         # Acquire data from the sensors
 
         try:
-            temp = int(dht11.getData(int(args.dht11Pin))[temp])
-            hum = int(dht11.getData(int(args.dht11Pin))[hum])
+            hum = int(dht11.getData(int(args.dht11Pin)))
 
         except:
-            temp = None
             hum = None
 
-        pres = int(BMP180.read_pressure())
+        temp = int(BMP180.read_temperature())
+        pres = int(BMP180.read_pressure() / 100)
         alti = int(BMP180.read_altitude())
 
     # Output data to the console if verbose mode enabled
 
     if args.verbose:
-    	if temp:
-            	print(u"Temperature: " + str(temp) + u"°C")
+    	if hum:
             	print(u"Humidity: " + str(hum) + u"%")
 
+        print(u"Temperature: " + str(temp) + u"°C")
     	print(u"Pressure: " + str(pres) + u"hPa")
         print(u"Altitude: " + str(alti) + u"m")
 

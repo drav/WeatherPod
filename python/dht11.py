@@ -95,7 +95,7 @@ def getData(pin):
     temperature = bin2dec(temperatureBit)
 
     if int(humidity) + int(temperature) - int(bin2dec(crc)) == 0:
-        return "{ 'temp': " + str(temperature) + ", 'hum': " + str(humidity) + " }"
+        return humidity
 
     else:
     	raise CRCError()
