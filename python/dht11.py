@@ -39,7 +39,7 @@ def getData(pin):
     temperatureBit = ""
     crc = ""
 
-    try:
+
     	while data[count] == 1:
     		tmp = 1
     		count = count + 1
@@ -68,6 +68,7 @@ def getData(pin):
 
     except:
     	raise RangeError("Range Error occured.")
+        exit(0)
 
     try:
     	for i in range(0, 8):
@@ -87,6 +88,7 @@ def getData(pin):
     			crc = crc + "0"
     except:
     	raise RangeError("Range Error occured.")
+        exit(0)
 
     humidity = bin2dec(humidityBit)
     temperature = bin2dec(temperatureBit)
