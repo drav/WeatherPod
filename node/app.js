@@ -5,8 +5,9 @@ var app = express();
 var path = require('path');
 var lastHumidity;
 
-app.get('/newdata/:temperature/:humidity/:pressure/:altitude', function(req, res) {
-
+app.set('view engine', 'ejs')
+.set('views', path.join(__dirname, 'views'))
+.get('/newdata/:temperature/:humidity/:pressure/:altitude', function(req, res) {
   var temperature = req.params.temperature;
   var humidity = req.params.humidity;
   var pressure = req.params.pressure;
