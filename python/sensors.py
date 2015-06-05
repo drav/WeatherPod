@@ -22,7 +22,8 @@ __status__ = "Development"
 parser = argparse.ArgumentParser()
 parser.add_argument("-r", "--random", help = "sends fake random data to the server for testing purposes", action = "store_true")
 parser.add_argument("-v", "--verbose", help = "increases command line verbosity", action = "store_true")
-parser.add_argument("dht11Pin", help = "DHT11 data pin number", type = int)
+parser.add_argument("--led", nargs = "?", help = "Status LED pin number (in board mode)", type = int)
+parser.add_argument("dht11Pin", help = "DHT11 data pin number (in board mode)", type = int)
 parser.add_argument("serverURL", help = "WeatherPod server URL/IP", type = str)
 args = parser.parse_args()
 
@@ -31,12 +32,20 @@ args = parser.parse_args()
 if args.random:
     import random
 
+    if args.led:
+        import RPi.GPIO as GPIO
+
 else:
     import RPi.GPIO as GPIO
     import dht11
     import Adafruit_BMP.BMP085 as BMP085
 
     BMP180 = BMP085.BMP085()
+
+def ledSetup():
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setup(args.led, GPIO.OUT)
+    GPIO.output(args.led, GPIO.LOW)
 
 def sendData():
     """ Sends data to server using an HTTP GET request every second. """
@@ -67,17 +76,22 @@ def sendData():
     # Output data to the console if verbose mode enabled
 
     if args.verbose:
-    	if hum:
-            	print(u"Humidity: " + str(hum) + u"%")
+        if hum:
+            print(u"Humidity: " + str(hum) + u"%")
 
         print(u"Temperature: " + str(temp) + u"C")
-    	print(u"Pressure: " + str(pres) + u"hPa")
+        print(u"Pressure: " + str(pres) + u"hPa")
         print(u"Altitude: " + str(alti) + u"m")
 
     # Send data to the server using an HTTP GET request
 
     try:
         requests.get("http://" + args.serverURL + "/newdata/" + str(temp) + "/" + str(hum) + "/" + str(pres) + "/" + str(alti))
+
+        if args.led:
+            GPIO.output(args.led, GPIO.HIGH)
+            time.sleep(0.5)
+            GPIO.output(args.led, GPIO.LOW)
 
         if args.verbose:
             print("Data sent.")
@@ -87,4 +101,5 @@ def sendData():
 
     pass
 
+ledSetup()
 sendData()
