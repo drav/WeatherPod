@@ -8,13 +8,13 @@ WeatherPod is designed to work on a Raspberry Pi (or a similar nano-computer if 
 
 Python script should be used this way:
 
-  sudo python sensors.py [-h] [-r] [-v] [--led [LEDPin]] dht11Pin serverURL
+    sudo python sensors.py [-h] [-r] [-v] [--led [LEDPin]] dht11Pin serverURL
 
 More info by displaying the help section using -h.
 
 Node.JS app only takes one argument needed to work properly:
 
-  node app.js portNumber
+    node app.js portNumber
 
 So that you can choose which port to run the server on.
 
