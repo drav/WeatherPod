@@ -4,6 +4,8 @@
 
 This source code is released as part of a 12th grade engineering sciences project. The goal was to provide an open-source, affordable, and easy to setup sensors pod for weather balloons enthusiasts with a bit of knowledge in electronics.
 
+![WeatherPod web app preview](/graphics/fancy-macbook-preview.png)
+
 WeatherPod is designed to work on a Raspberry Pi (or a similar nano-computer if you feel like tweaking the code a little!) with a Bosh BMP180 I2C pressure and temperature sensor, as well as a DHT11 for humidity measurements. On the server side, it features a Node.JS app that -using Socket.io- displays the values sent by the embedded system on a comprehensive web interface. The link between these two is made thanks to a 3G modem.
 
 Python script should be used this way:
