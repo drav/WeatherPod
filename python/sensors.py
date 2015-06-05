@@ -8,6 +8,9 @@
 import argparse
 import requests
 import threading
+import signal
+import sys
+import time
 
 __author__ = "Loan Laux"
 __copyright__ = "Copyright 2015"
@@ -42,6 +45,14 @@ else:
 
     BMP180 = BMP085.BMP085()
 
+def signalHandler(signal, frame):
+    if args.led:
+        GPIO.cleanup()
+    
+    sys.exit(0)
+
+signal.signal(signal.SIGINT, signalHandler)
+
 def ledSetup():
     GPIO.setmode(GPIO.BOARD)
     GPIO.setup(args.led, GPIO.OUT)
@@ -49,8 +60,10 @@ def ledSetup():
 
 def sendData():
     """ Sends data to server using an HTTP GET request every second. """
-
-    threading.Timer(1.0, sendData).start()
+            
+    dataLoop = threading.Timer(1.0, sendData)
+    dataLoop.setDaemon(True)
+    dataLoop.start()
 
     if args.random:
         # Randomly generate fake data
@@ -90,7 +103,7 @@ def sendData():
 
         if args.led:
             GPIO.output(args.led, GPIO.HIGH)
-            time.sleep(0.5)
+            time.sleep(0.2)
             GPIO.output(args.led, GPIO.LOW)
 
         if args.verbose:
@@ -103,3 +116,4 @@ def sendData():
 
 ledSetup()
 sendData()
+signal.pause()
