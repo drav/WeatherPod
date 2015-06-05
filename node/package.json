@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "description": "Webapp that receives data from a WeatherPod module and displays them live to the user",
   "author": "Loan Laux <contact@loanlaux.fr>",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js 80"
+  }
   "dependencies": {
     "ejs": "^2.3.1",
     "express": "^4.12.3",
