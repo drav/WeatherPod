@@ -12,7 +12,7 @@ Python script should be used this way:
 
 More info by displaying the help section using -h.
 
-Node.JS app only takes one argument needed to work properly:
+Node.JS app only takes one argument to work properly:
 
     node app.js portNumber
 
