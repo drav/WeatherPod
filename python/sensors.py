@@ -48,7 +48,7 @@ else:
 def signalHandler(signal, frame):
     if args.led:
         GPIO.cleanup()
-    
+
     sys.exit(0)
 
 signal.signal(signal.SIGINT, signalHandler)
@@ -60,7 +60,7 @@ def ledSetup():
 
 def sendData():
     """ Sends data to server using an HTTP GET request every second. """
-            
+
     dataLoop = threading.Timer(1.0, sendData)
     dataLoop.setDaemon(True)
     dataLoop.start()
@@ -114,6 +114,8 @@ def sendData():
 
     pass
 
-ledSetup()
+if args.led:
+    ledSetup()
+
 sendData()
 signal.pause()
